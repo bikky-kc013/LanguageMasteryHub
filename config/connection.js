@@ -91,5 +91,6 @@ const createTable = () => {
     }
   );
 };
+// module.exports  = { connection, createConnection };
 
 module.exports = { connection, createConnection };
