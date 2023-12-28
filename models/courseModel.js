@@ -11,25 +11,7 @@ const checkIfCourseExists = async (courseName) => {
 };
 
 
-const addCourse = async (courseData) => {
-  const courseName = courseData.course_name;
-  let originalCourseName = courseName;
-  if (await checkIfCourseExists(courseName)) {
-    let suffix = 1;
-    let newCourseName = `${originalCourseName}${suffix}`;
-    while (await checkIfCourseExists(newCourseName)) {
-      suffix++;
-      newCourseName = `${originalCourseName}${suffix}`;
-    }
-    courseData.course_name = newCourseName;
-  }
-  await connection
-    .promise()
-    .query(`INSERT INTO course (course_name, course_price) VALUES (?,?)`, [
-      courseData.course_name,
-      courseData.course_price,
-    ]);
-};
+
 
 
 
@@ -63,6 +45,28 @@ const addPlayList = async (playList) => {
         playList.series_id,
       ]
     );
+};
+
+
+
+const addCourse = async (courseData) => {
+  const courseName = courseData.course_name;
+  let originalCourseName = courseName;
+  if (await checkIfCourseExists(courseName)) {
+    let suffix = 1;
+    let newCourseName = `${originalCourseName}${suffix}`;
+    while (await checkIfCourseExists(newCourseName)) {
+      suffix++;
+      newCourseName = `${originalCourseName}${suffix}`;
+    }
+    courseData.course_name = newCourseName;
+  }
+  await connection
+    .promise()
+    .query(`INSERT INTO course (course_name, course_price) VALUES (?,?)`, [
+      courseData.course_name,
+      courseData.course_price,
+    ]);
 };
 
 
