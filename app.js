@@ -12,6 +12,8 @@ const { courseRouter } = require("./routes/courseRoute");
 const { cartRouter } = require("./routes/cartRoute");
 createConnection();
 
+
+
 app.use(userAuthRouter);
 app.use(courseRouter);
 app.use(cartRouter);
